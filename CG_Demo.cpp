@@ -25,7 +25,7 @@ void init() // FOR GLUT LOOP
 	glClearColor(0.0, 0.0, 0.0, 0.0);	// Clear the color state.
 	glMatrixMode(GL_MODELVIEW);			// Go to 3D mode.
 	glLoadIdentity();					// Reset 3D view matrix.
-	shape = 7;
+	shape = 1;
 }
 
 void display()							// Called for each frame (about 60 times per second).
@@ -137,7 +137,7 @@ void display()							// Called for each frame (about 60 times per second).
 		glVertex3f(7.5, -4.5, 0);
 		glEnd();
 	}
-	else if (true)
+	else if (shape == 3)
 	{
 		//Jamaica
 		//Fondo amarillo
@@ -175,6 +175,18 @@ void display()							// Called for each frame (about 60 times per second).
 		glVertex3f(-8, 4, 0.001);
 		glVertex3f(-8, -4, 0.001);
 		glVertex3f(-1.5, 0, 0.001);
+		glEnd();
+	}
+	else if (shape == 4)
+	{
+		//Finlandia
+		//Fondo blanco
+		glBegin(GL_POLYGON);
+		glColor3f(1, 1, 0);
+		glVertex3f(8, 5, 0);
+		glVertex3f(-8, 5, 0);
+		glVertex3f(-8, -5, 0);
+		glVertex3f(8, -5, 0);
 		glEnd();
 	}
 
