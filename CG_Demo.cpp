@@ -25,7 +25,7 @@ void init() // FOR GLUT LOOP
 	glClearColor(0.0, 0.0, 0.0, 0.0);	// Clear the color state.
 	glMatrixMode(GL_MODELVIEW);			// Go to 3D mode.
 	glLoadIdentity();					// Reset 3D view matrix.
-	shape = 1;
+	shape = 4;
 }
 
 void display()							// Called for each frame (about 60 times per second).
@@ -109,6 +109,7 @@ void display()							// Called for each frame (about 60 times per second).
 	}
 	else if (shape == 2)
 	{
+		//Los poligonos deben empezar y terminar c/u o sino los colores/figuras se cruzan
 		//Alemania
 		//Rectangulo 1 - negro
 		glBegin(GL_POLYGON);
@@ -117,19 +118,19 @@ void display()							// Called for each frame (about 60 times per second).
 		glVertex3f(-7.5, 4.5, 0);
 		glVertex3f(-7.5, 1.5, 0);
 		glVertex3f(7.5, 1.5, 0);
-		//glEnd();
+		glEnd();
 
 		//Rectangulo 2 - rojo
-		//glBegin(GL_POLYGON);
+		glBegin(GL_POLYGON);
 		glColor3f(1, 0, 0);
 		glVertex3f(7.5, 1.5, 0);
 		glVertex3f(-7.5, 1.5, 0);
 		glVertex3f(-7.5, -1.5, 0);
 		glVertex3f(7.5, -1.5, 0);
-		//glEnd();
+		glEnd();
 
 		//Rectangulo 3 - amarillo
-		//glBegin(GL_POLYGON);
+		glBegin(GL_POLYGON);
 		glColor3f(1, 1, 0);
 		glVertex3f(7.5, -1.5, 0);
 		glVertex3f(-7.5, -1.5, 0);
@@ -182,11 +183,27 @@ void display()							// Called for each frame (about 60 times per second).
 		//Finlandia
 		//Fondo blanco
 		glBegin(GL_POLYGON);
-		glColor3f(1, 1, 0);
+		glColor3f(1, 1, 1);
 		glVertex3f(8, 5, 0);
 		glVertex3f(-8, 5, 0);
 		glVertex3f(-8, -5, 0);
 		glVertex3f(8, -5, 0);
+		glEnd();
+
+		//Lineas azules
+		glBegin(GL_POLYGON);
+		glColor3f(0, 0, 0.8);
+		glVertex3f(-2, 5, 0.005);
+		glVertex3f(-4, 5, 0.005);
+		glVertex3f(-4, -5, 0.005);
+		glVertex3f(-2, -5, 0.005);
+		glEnd();
+
+		glBegin(GL_POLYGON);
+		glVertex3f(-8, 1.3, 0.005);
+		glVertex3f(-8, -1.3, 0.005);
+		glVertex3f(8, -1.3, 0.005);
+		glVertex3f(8, 1.3, 0.005);
 		glEnd();
 	}
 
