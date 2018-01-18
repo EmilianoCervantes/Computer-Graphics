@@ -3,6 +3,8 @@
  *
  * TC3022. Computer Graphics Course.
  * Basic template OpenGL project.
+ * 
+ * Edited by Alison Gonzalez & Emiliano Cervantes
  */
 
 #ifdef __APPLE__
