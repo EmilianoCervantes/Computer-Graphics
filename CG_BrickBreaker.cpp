@@ -6,11 +6,14 @@
 * Edited by Emiliano Cervantes
 */
 
+//Only if using Mac
 #ifdef __APPLE__
 // See: http://lnx.cx/docs/opengl-in-xcode/
 #include <OpenGL/gl.h>
 #include <OpenGL/glu.h>
 #include <GLUT/glut.h>
+#include <stdlib.h>
+
 #else
 #include "freeglut.h"
 #endif
@@ -24,6 +27,9 @@ float cellWidth = 0.3f;
 float cellHeight = 0.1f;
 
 int wall[HEIGHT][WIDTH];
+float colorsR[HEIGHT][WIDTH];
+float colorsG[HEIGHT][WIDTH];
+float colorsB[HEIGHT][WIDTH];
 
 void init() { // FOR GLUT LOOP
 	glEnable(GL_DEPTH_TEST);            // Enable check for close and far objects.
@@ -37,6 +43,10 @@ void init() { // FOR GLUT LOOP
 		for (int col = 0; col < WIDTH; col++)
 		{
 			wall[row][col] = 1;
+			//Just rand gives an integer, have to define for 0..RAN_MAX - 0..1
+			colorsR[row][col] = (float)(rand()/ RAND_MAX);
+			colorsG[row][col] = (float)rand() / RAND_MAX;
+			colorsB[row][col] = (float)rand() / RAND_MAX;
 		}
 	}
 }
@@ -63,7 +73,7 @@ void display() {                            // Called for each frame (about 60 t
 		{
 			if (wall[row][col] == 1)
 			{
-				drawSquare(col*cellWidth);
+				drawSquare(col*cellWidth, row*cellHeight,cellWidth,cellHeight,colorsR[row][col],colorsB[row][col],colorsG[row][col]);
 			}
 		}
 	}
