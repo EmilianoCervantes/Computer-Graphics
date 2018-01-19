@@ -26,6 +26,12 @@
 float cellWidth = 0.3f;
 float cellHeight = 0.1f;
 
+float offsetx = -0.5f*cellWidth*WIDTH;
+float offsety = 1.0f;
+
+float playerX = 0.0f;
+float playerY = 0.0f;
+
 int wall[HEIGHT][WIDTH];
 float colorsR[HEIGHT][WIDTH];
 float colorsG[HEIGHT][WIDTH];
@@ -73,11 +79,11 @@ void display() {                            // Called for each frame (about 60 t
 		{
 			if (wall[row][col] == 1)
 			{
-				drawSquare(col*cellWidth, row*cellHeight,cellWidth,cellHeight,colorsR[row][col],colorsB[row][col],colorsG[row][col]);
+				drawSquare(offsetx + col*cellWidth,offsety + row*cellHeight,cellWidth,cellHeight,colorsR[row][col],colorsB[row][col],colorsG[row][col]);
 			}
 		}
 	}
-
+	drawSquare(playerX, playerY, cellWidth, cellHeight, 0.5f, 0.5f, 0.5f);
 	glutSwapBuffers();                                                // Swap the hidden and visible buffers.
 }
 
@@ -98,24 +104,18 @@ void reshape(int x, int y) {                                            // Calle
 	display();
 }
 
-void keys(unsigned char k, int x, int y) {
-	switch (k) {
-	case '1':
-		
+void arrows(int k, int x, int y) {
+	switch (k)
+	{
+	case GLUT_KEY_LEFT:
+		playerX -= 0.1f;
 		break;
-	case '2':
-		
-		break;
-	case '3':
-		
-		break;
-	case '4':
-		
+	case GLUT_KEY_RIGHT:
+		playerX += 0.1f;
 		break;
 	default:
 		break;
 	}
-	glutPostRedisplay();
 }
 
 int main(int argc, char* argv[]) {
@@ -125,9 +125,9 @@ int main(int argc, char* argv[]) {
 	glutCreateWindow("CG Brick Breaker");
 
 	init();
+	glutSpecialFunc(arrows);
 	glutReshapeFunc(reshape);                                        // Reshape CALLBACK function.
 	glutDisplayFunc(display);                                        // Display CALLBACK function.
-	glutKeyboardFunc(keys);
 	glutIdleFunc(idle);                                                // Idle CALLBACK function.
 	glutMainLoop();                                                    // Begin graphics program.
 	return 0;                                                        // ANSI C requires a return value.
